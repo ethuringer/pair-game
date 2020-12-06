@@ -39,7 +39,7 @@ h1, h2 {
     justify-content: center;
 }
 
-.cards {
+.flip__cards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -48,19 +48,82 @@ h1, h2 {
 
 }
 
-.card__face--down {
+.flip__card {
+    background-color: transparent;
     width: 85px;
     height: 120px;
-    background: url(bg.jpg);
-    background-repeat: repeat;
+    perspective: 1000px;
     margin: 20px 10px;
+  }
+  
+  .flip__card--inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .is-flipped .flip__card--inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip__card--front, .flip__card--back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     border-radius: 5px;
-}
+  }
 
-.cards__face--up{
-    width: 85px;
-    height: 120px;
-    background: #000;
-    margin: 20px 10px;
-    border-radius: 5px;
-}
+  .flip__card--front {
+    background-image: url('bg.jpg');
+  }
+  
+  .flip__card--back {
+    transform: rotateY(180deg);
+  }
+
+  .flip__card--back img {
+      border-radius: 5px;
+  }
+
+
+  /* .flip__card--back.display {
+    display: block;
+  } */
+
+
+
+  /* .flip__card  {
+      order: 1;
+  }
+  .flip__card--2 {
+      order: 2;
+  }
+  .flip__card--3 {
+      order: 3;
+  }
+  .flip__card--4 {
+      order: 4;
+  }
+  .flip__card--5 {
+      order: 5;
+  }
+  .flip__card--6 {
+      order: 6;
+  }
+  .flip__card--7 {
+      order: 7;
+  }
+  .flip__card--8 {
+      order: 8;
+  }
+  .flip__card--9 {
+      order: 9;
+  }
+  .flip__card--10 {
+      order: 10;
+  }  */
