@@ -1,6 +1,7 @@
 'use strict';
 let firstCard = false;
 let lastCard = false;
+let lastCardCheck = false;
 let cardOne = -1;
 let cardTwo = -1;
 let cardLayout ='';
@@ -13,17 +14,6 @@ function randomBg() {
 }
 randomBg();
 
-
-// function cardsFaceDown() {
-//     const cards = Array.from(document.querySelectorAll('.flip__cards :nth-child(n)'));
-
-//     for (let i = 0; i < cards.length; i += 1){
-//         cards[i].addEventListener('click', () => {
-//         cards[i].classList.add('is-flipped')
-//         })
-//     }
-// }
-// cardsFaceDown();
 
 function turnUpCards() {
     firstCard = true;
@@ -42,12 +32,12 @@ function turnUpCards() {
                 cardTwo = i;
             }        
 
+            lastCardCheck=true;
             for (let i = 0; i < cards.length; i += 1){
 
-            //console.log(cards[i].parentElement.parentElement.classList.value);
-
-            if (cards[i].parentElement.parentElement.classList.value=='flip__card is-flipped' && lastCard==false) {lastCard=false};
+            if (cards[i].parentElement.parentElement.classList.value=='flip__card') {lastCardCheck=false};
             }
+            if (lastCardCheck==true) {lastCard=true;};
             
             if (cardTwo !== -1) {
 
@@ -57,6 +47,7 @@ function turnUpCards() {
                 }
                 cardOne = -1;
                 cardTwo = -1;
+                lastCardCheck=false;
 
             }
 
@@ -68,8 +59,6 @@ turnUpCards();
 
 function turnDownCards (param1,param2) {
     const cards = Array.from(document.querySelectorAll('.flip__cards :nth-child(n) :nth-child(1) :nth-child(2) '));
-
-    console.log("lefordít",param1, param2);
 
     cards[param1].parentElement.parentElement.classList.remove('is-flipped'),
     cards[param2].parentElement.parentElement.classList.remove('is-flipped');
@@ -104,10 +93,4 @@ const cards = Array.from(document.querySelectorAll('.flip__cards :nth-child(n)')
             if (!stopperIsRunning) {
                 stopperIsRunning = true;;
             }
-    // if (stopperIsRunning) {
-    //     stopperIsRunning = false;
-    //     stopperTime = 0;
-    // } else {
-    //     stopperIsRunning = true;
-    // }
 });
